@@ -104,3 +104,23 @@ Tenemos además la posibilidad de definir nuestros propios formatos para transfo
             | 07/12/1999 | 07 de diciembre  |
             | 01/01/2000 | 01 de enero  |
 >  El separador de miles que se utiliza en Power BI es la coma y el separador decimal es el punto.
+
+## Informes
+
+Ahora podemos pasar a los informes, que no son más que ventanas con información gráfica. La plataforma nos da una *muy* amplia gama de visualizaciones para elegir entonces vamos a ir por partes:
+
+1. Tablas y Matrices
+
+Las **tablas** en sí no tienen mucho misterio, nos permiten agregar/sacar columnas y reordenarlas en una nueva sub-tabla y ordenar sus valores. <br> Las **matrices** nos otorgan una mayor visualización de los datos más cómoda en algunos casos gracias a 3 campos configurables:
+
+-   Filas
+-   Columnas
+-   Valores
+
+Con esto podríamos armar reportes sobre -por ejemplo- la cantidad de plata gastada en $\text{X}$ mes por $\text{Y}$ cliente. 
+
+![Comparación de visualizaciones](comparacion-tabla-matriz.png)
+
+Es evidente que en esta situación utilizar una matríz es mucho mejor que una tabla, tenemos la información presentada de forma más compacta mientras que la tabla requiere _scrollear_  y reorganizarla múltiples veces para obtener la misma información. 
+
+
