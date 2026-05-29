@@ -30,7 +30,6 @@ Power BI tiene la ventaja de poder trabajar con distintos origenes de informaci�
     - MongoDB Atlas
     - Azure
 
-
 >Cabe aclarar que ***la importación de los archivos no es equivalente a través de los distintos tipos*** y es importante saber de antemano que tipo de archivo vamos a importar.
 
 ## Tipos
@@ -107,20 +106,78 @@ Tenemos además la posibilidad de definir nuestros propios formatos para transfo
 
 ## Informes
 
-Ahora podemos pasar a los informes, que no son más que ventanas con información gráfica. La plataforma nos da una *muy* amplia gama de visualizaciones para elegir entonces vamos a ir por partes:
+Ahora podemos pasar a los informes, que no son más que ventanas con información gráfica. 
 
-1. Tablas y Matrices
+### Tipos
 
-Las **tablas** en sí no tienen mucho misterio, nos permiten agregar/sacar columnas y reordenarlas en una nueva sub-tabla y ordenar sus valores. <br> Las **matrices** nos otorgan una mayor visualización de los datos más cómoda en algunos casos gracias a 3 campos configurables:
+La plataforma nos da una *muy* amplia gama de visualizaciones para elegir y siempre cualquier grafico es bueno en el contexto adecuado. Lo más importante a tener en cuenta acá es poder mostrar la información de forma concreta, correcta, sin redundancias y más intuitiva posible. 
 
--   Filas
--   Columnas
--   Valores
+Veamos un caso donde un tipo de dato es más declarativo que otro para la cantidad de plata gastada en $\text{X}$ mes por $\text{Y}$ cliente. 
 
-Con esto podríamos armar reportes sobre -por ejemplo- la cantidad de plata gastada en $\text{X}$ mes por $\text{Y}$ cliente. 
-
-![Comparación de visualizaciones](comparacion-tabla-matriz.png)
+![Comparación de visualizaciones](static/comparacion-tabla-matriz.png)
 
 Es evidente que en esta situación utilizar una matríz es mucho mejor que una tabla, tenemos la información presentada de forma más compacta mientras que la tabla requiere _scrollear_  y reorganizarla múltiples veces para obtener la misma información. 
 
+#### Segmentadores
 
+Hago esta pequeña distinción ya que los segmentadores no dan información como tal, lo que hacen es filtrar todas las visualizaciones de la página de forma dinámica según los valores de algún campo.
+
+En este ejemplo podemos segmentar la información específica a los clientes que operan en Barcelona.
+![Reporte Segmentado](static/reporte-segmentado.png)
+
+### Operaciones
+
+Podemos realizar distintas modificaciones a cada visualización particular. <br>
+
+1. Renombres
+
+    Muchas veces el nombre predeterminado del gráfico (o de la columna) no es adecuado para el contexto y podemos renombrar cualquiera de estos campos para aumentar la declaratividad.
+
+
+2. Campos numéricos 
+
+    Los campos numéricos de manera predeterminada van a estar resumidos aplicando la sumatoria de sus valores, esto es modificable _on the fly_ en cada gráfico particular para que muestre el promedio/máx/mín/desviación estándar/porcentaje o directamente los valores reales e individuales.
+
+3. Filtrado
+
+    Por otra parte tenemos la ventaja de poder aplicar rápidamente filtros para aislar información según valores en campos específicos y de forma general (para todas las visualizaciones) o individual (para visualizaciones particulares)
+
+En este ejemplo vemos como al seleccionar un cliente particular (filtro general) para ver como nos resalta su información específica. 
+En simultaneo, gracias a que el gráfico de barras verticales `Pago individual máximo saldado por cliente` tiene un filtro de `PAGADO = Si` (filtro individual) tenemos una doble capa de filtrado que nos da más información. <br>
+_Veamos además como aplicar ciertas operaciones visuales nos facilitan la lectura del reporte_
+
+1. **Reporte sin aislar clientes particulares**
+    
+![Reporte general](static/reporte-general.png)
+
+2. **Reporte aislando clientes particulares**
+
+
+![Reporte especifico](static/reporte-especifico.png)
+
+
+# Power Query
+
+Toda esta información sobre la que trabajamos es traída de una base de datos (ya sea en formato de archivo o servidor) mediante power query. Esta herramienta nos permite realizar una serie de pasos transformativos sobre la información acorde a nuestra conveniencia ***sin modificar la fuente original***.
+
+Dentro de las transformaciones disponibles tenemos:
+-   Eliminar y Renombrar columnas
+-   Eliminar filas (En base a algún criterio, ya sea que contiene errores, esten duplicadas o vacias y cualquier otro filtro en base a valores)
+-   Cambiar tipos
+-   Copiar tablas
+-   Cambiar origen de datos
+-   Formatear columnas (Dividir, unir, formato de valores)
+
+Todo esto ocurre en una lista de pasos que es modificable en cualquier punto (con las consecuencias que la modificacion trae), pudiendo agregar pasos intermedios o quitar previos.
+
+Un pequeño ejemplo en el que eliminamos, dividmos y renombramos columnas, modificamos tipos y asignamos como headers la primera fila.  
+
+
+1. **Tabla Original** <br>
+![Tabla Original](static/tabla-original.png)
+
+2. **Tabla Modificada**<br>
+![Tabla Transformada](static/tabla-transformada.png)
+
+3.  **Lista de pasos *(renombrados)***<br>
+![Steps](static/steps.png)
